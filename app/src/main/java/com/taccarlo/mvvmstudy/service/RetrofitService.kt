@@ -1,5 +1,6 @@
-package com.taccarlo.mvvmstudy
+package com.taccarlo.mvvmstudy.service
 
+import com.taccarlo.mvvmstudy.Movie
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

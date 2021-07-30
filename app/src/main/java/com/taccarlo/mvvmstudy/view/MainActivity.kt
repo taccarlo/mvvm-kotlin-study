@@ -1,11 +1,16 @@
-package com.taccarlo.mvvmstudy
+package com.taccarlo.mvvmstudy.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.taccarlo.mvvmstudy.*
 import com.taccarlo.mvvmstudy.databinding.ActivityMainBinding
+import com.taccarlo.mvvmstudy.model.MainRepository
+import com.taccarlo.mvvmstudy.service.RetrofitService
+import com.taccarlo.mvvmstudy.viewmodel.MainViewModel
+import com.taccarlo.mvvmstudy.viewmodel.MyViewModelFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
+            MainViewModel::class.java)
 
         binding.recyclerview.adapter = adapter
 

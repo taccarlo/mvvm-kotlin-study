@@ -1,7 +1,9 @@
-package com.taccarlo.mvvmstudy
+package com.taccarlo.mvvmstudy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.taccarlo.mvvmstudy.model.MainRepository
+import com.taccarlo.mvvmstudy.Movie
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

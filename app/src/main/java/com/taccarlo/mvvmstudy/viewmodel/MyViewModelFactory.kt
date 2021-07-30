@@ -1,7 +1,8 @@
-package com.taccarlo.mvvmstudy
+package com.taccarlo.mvvmstudy.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.taccarlo.mvvmstudy.model.MainRepository
 
 class MyViewModelFactory constructor(private val repository: MainRepository): ViewModelProvider.Factory {
 
