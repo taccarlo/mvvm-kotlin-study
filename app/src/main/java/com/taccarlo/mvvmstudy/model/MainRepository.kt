@@ -1,7 +1,7 @@
 package com.taccarlo.mvvmstudy.model
 
-import com.taccarlo.mvvmstudy.service.RetrofitService
+import com.taccarlo.mvvmstudy.api.RetrofitService
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
-    fun getAllMovies() = retrofitService.getAllMovies()
+    fun getAllLinkedinRepos(input1:String, input2:String) = retrofitService.getAllLinkedinRepos(input1, input2)
 }

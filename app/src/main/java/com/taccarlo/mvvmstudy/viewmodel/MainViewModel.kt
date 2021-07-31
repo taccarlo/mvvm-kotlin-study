@@ -13,9 +13,10 @@ class MainViewModel constructor(private val repository: MainRepository)  : ViewM
     val linkedinRepoList = MutableLiveData<List<LinkedinRepository>>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getAllMovies() {
-
-        val response = repository.getAllMovies()
+    fun getAllLinkedinRepos(input1: String, input2: String) {
+        if(input1?.isEmpty() || input2?.isEmpty())
+            return
+        val response = repository.getAllLinkedinRepos(input1, input2)
         response.enqueue(object : Callback<List<LinkedinRepository>> {
             override fun onResponse(call: Call<List<LinkedinRepository>>, response: Response<List<LinkedinRepository>>) {
                 linkedinRepoList.postValue(response.body())

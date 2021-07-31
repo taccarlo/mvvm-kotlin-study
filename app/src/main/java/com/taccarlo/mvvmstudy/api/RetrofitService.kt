@@ -1,17 +1,25 @@
-package com.taccarlo.mvvmstudy.service
+package com.taccarlo.mvvmstudy.api
 
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface RetrofitService {
-    @GET("repos/immuni-app/immuni/stargazers")
-    fun getAllMovies(): Call<List<LinkedinRepository>>
+    @GET("repos/{owner}/{name}/stargazers")
+    fun getAllLinkedinRepos(@Path("owner") input1:String, @Path("name") input2:String): Call<List<LinkedinRepository>>
 
     /**
      * Retrofit service instance using the retrofit
+     * Using Singleton pattern
+     * another way to implement Singleton pattern in Kotlin is:
+     * object ExampleSingleton {
+     * fun exampleMethod() {
+     *     // ...
+     *    }
+     * }
      */
     companion object {
 
