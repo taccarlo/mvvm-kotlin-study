@@ -16,11 +16,10 @@ import com.taccarlo.mvvmstudy.viewmodel.MyViewModelFactory
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
-
     lateinit var viewModel: MainViewModel
 
     private val retrofitService = RetrofitService.getInstance()
-    val adapter = MainAdapter()
+    private val adapter = MainAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "onCreate: $it")
             adapter.setMovieList(it)
         })
-
         viewModel.errorMessage.observe(this, Observer {
 
         })

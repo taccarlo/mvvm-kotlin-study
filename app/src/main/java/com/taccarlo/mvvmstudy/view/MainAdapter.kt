@@ -1,10 +1,11 @@
-package com.taccarlo.mvvmstudy
+package com.taccarlo.mvvmstudy.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.databinding.AdapterMovieBinding
+import com.taccarlo.mvvmstudy.model.Movie
 
 class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
