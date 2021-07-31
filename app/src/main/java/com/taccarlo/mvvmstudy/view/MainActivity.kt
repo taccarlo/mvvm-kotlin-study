@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.linkedinRepoList.observe(this, Observer {
             Log.d(TAG, "onCreate: $it")
             if(it==null)
-                Log.d(TAG, "No repo with this parameters")
+                Log.d(TAG, "No repo with these parameters")
             else
                 adapter.setLinkedinRepoList(it)
         })

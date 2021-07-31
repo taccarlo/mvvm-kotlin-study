@@ -7,6 +7,7 @@ import com.taccarlo.mvvmstudy.model.MainRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class MainViewModel constructor(private val repository: MainRepository)  : ViewModel() {
 
@@ -16,7 +17,9 @@ class MainViewModel constructor(private val repository: MainRepository)  : ViewM
     fun getAllLinkedinRepos(input1: String, input2: String) {
         if(input1?.isEmpty() || input2?.isEmpty())
             return
-        val response = repository.getAllLinkedinRepos(input1, input2)
+        val in1 = input1.lowercase().trim()
+        val in2 = input2.lowercase().trim()
+        val response = repository.getAllLinkedinRepos(in1, in2)
         response.enqueue(object : Callback<List<LinkedinRepository>> {
             override fun onResponse(call: Call<List<LinkedinRepository>>, response: Response<List<LinkedinRepository>>) {
                 linkedinRepoList.postValue(response.body())
