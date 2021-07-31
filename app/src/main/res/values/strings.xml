@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MVVM STUDY: Linkedin list case</string>
     <string name="avatar_image">Avatar image</string>
+    <string name="search_hint">Owner of the directory</string>
+    <string name="search_hin2">Name of the directory</string>
+    <string name= "search_text">android</string>
+    <string name= "search_text2">architecture-components-samples</string>
 </resources>
