@@ -3,6 +3,9 @@ package com.taccarlo.mvvmstudy.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.taccarlo.mvvmstudy.*
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerview.adapter = adapter
 
-        viewModel.movieList.observe(this, Observer {
+        viewModel.linkedinRepoList.observe(this, Observer {
             Log.d(TAG, "onCreate: $it")
             adapter.setMovieList(it)
         })
@@ -40,5 +43,19 @@ class MainActivity : AppCompatActivity() {
 
         })
         viewModel.getAllMovies()
+
+        initSearchInputListener()
+    }
+    private fun initSearchInputListener(){
+
+        binding.input.setOnEditorActionListener{ view: View, actionId: Int, _: KeyEvent? ->
+            if(actionId == EditorInfo.IME_ACTION_DONE|| actionId == EditorInfo.IME_ACTION_SEARCH){
+                val input = binding.input.text.toString()
+                Log.d(TAG, "initSearchInputListener: $input")
+                true
+            } else {
+                false
+            }
+        }
     }
 }

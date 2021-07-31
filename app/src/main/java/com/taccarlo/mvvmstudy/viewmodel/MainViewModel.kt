@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class MainViewModel constructor(private val repository: MainRepository)  : ViewModel() {
 
-    val movieList = MutableLiveData<List<LinkedinRepository>>()
+    val linkedinRepoList = MutableLiveData<List<LinkedinRepository>>()
     val errorMessage = MutableLiveData<String>()
 
     fun getAllMovies() {
@@ -18,7 +18,7 @@ class MainViewModel constructor(private val repository: MainRepository)  : ViewM
         val response = repository.getAllMovies()
         response.enqueue(object : Callback<List<LinkedinRepository>> {
             override fun onResponse(call: Call<List<LinkedinRepository>>, response: Response<List<LinkedinRepository>>) {
-                movieList.postValue(response.body())
+                linkedinRepoList.postValue(response.body())
             }
 
             override fun onFailure(call: Call<List<LinkedinRepository>>, t: Throwable) {

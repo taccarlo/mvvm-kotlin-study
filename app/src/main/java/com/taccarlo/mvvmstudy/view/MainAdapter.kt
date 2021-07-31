@@ -11,8 +11,8 @@ class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
     var linkedinRepos = mutableListOf<LinkedinRepository>()
 
-    fun setMovieList(movies: List<LinkedinRepository>) {
-        this.linkedinRepos = movies.toMutableList()
+    fun setMovieList(linkedinRepos: List<LinkedinRepository>) {
+        this.linkedinRepos = linkedinRepos.toMutableList()
         notifyDataSetChanged()
     }
 
