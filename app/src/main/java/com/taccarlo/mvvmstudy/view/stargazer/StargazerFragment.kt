@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentStargazerBinding
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
+import com.taccarlo.mvvmstudy.viewmodel.stargazer.StargazerViewModel
 
 
 /**
@@ -21,11 +23,11 @@ import com.taccarlo.mvvmstudy.model.LinkedinRepository
  */
 class StargazerFragment : Fragment() {
 
-    //TODO: separate fragment from view model
     private lateinit var itemId: String
     private lateinit var linkedinRepository: LinkedinRepository
     private var _binding: FragmentStargazerBinding ?= null
     private val binding get() = _binding!!
+    private lateinit var viewModel: StargazerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,7 @@ class StargazerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStargazerBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(StargazerViewModel::class.java)
         return binding.root
     }
 
