@@ -11,9 +11,25 @@
         <action
             android:id="@+id/action_mainFragment_to_koinExampleFragment"
             app:destination="@id/koinExampleFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_stargazerFragment"
+            app:destination="@id/stargazerFragment" />
     </fragment>
     <fragment
         android:id="@+id/koinExampleFragment"
         android:name="com.taccarlo.mvvmstudy.view.koinExample.KoinExampleFragment"
         android:label="KoinExampleFragment" />
+    <fragment
+        android:id="@+id/stargazerFragment"
+        android:name="com.taccarlo.mvvmstudy.view.stargazer.StargazerFragment"
+        android:label="StargazerFragment" >
+
+        <argument
+            android:name="itemId"
+            android:defaultValue="None" />
+        <argument
+            android:name="itemPassed"
+            app:argType="com.taccarlo.mvvmstudy.model.LinkedinRepository" />
+
+    </fragment>
 </navigation>

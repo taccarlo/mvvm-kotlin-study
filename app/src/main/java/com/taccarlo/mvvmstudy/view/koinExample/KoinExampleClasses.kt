@@ -1,5 +1,6 @@
 package com.taccarlo.mvvmstudy.view.koinExample
 
+//TODO: place this file somewhere
 class Student(private val course: Course, private val friend: Friend) {
 
     fun doWork(): String =

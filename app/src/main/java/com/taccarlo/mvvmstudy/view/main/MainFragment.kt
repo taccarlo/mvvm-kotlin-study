@@ -8,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import com.taccarlo.mvvmstudy.api.RetrofitService
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentMainBinding
+import com.taccarlo.mvvmstudy.model.LinkedinRepository
 import com.taccarlo.mvvmstudy.model.MainRepository
 import com.taccarlo.mvvmstudy.viewmodel.MyViewModelFactory
 import com.taccarlo.mvvmstudy.viewmodel.main.MainViewModel
@@ -23,7 +24,6 @@ class MainFragment : Fragment() {
     private val logTag = "MainFragment"
     private lateinit var viewModel: MainViewModel
     private val retrofitService = RetrofitService.getInstance()
-    private val adapter = MainAdapter()
     private var _binding: FragmentMainBinding ?= null
     private val binding get() = _binding!!
 
@@ -36,6 +36,9 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
             MainViewModel::class.java)
 
+        val adapter = MainAdapter() { position, listItem ->
+            showItem(position, listItem)
+        }
         binding.recyclerview.adapter = adapter
 
         viewModel.linkedinRepoList.observe(viewLifecycleOwner, {
@@ -97,4 +100,12 @@ class MainFragment : Fragment() {
         viewModel.getAllLinkedinRepos(input1, input2)
     }
 
+    //TODO: is that the best mode to implement this part? a callback passed to a item of the list?
+    private fun showItem(position: Int, linkedinRepository: LinkedinRepository) {
+        val bundle = bundleOf("itemId" to position.toString(), "itemPassed" to linkedinRepository)
+        findNavController().navigate(
+            R.id.action_mainFragment_to_stargazerFragment,
+            bundle
+        )
+    }
 }

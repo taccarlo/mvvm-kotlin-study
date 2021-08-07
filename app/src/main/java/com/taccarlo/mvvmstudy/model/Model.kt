@@ -1,3 +1,8 @@
 package com.taccarlo.mvvmstudy.model
 
-data class LinkedinRepository( val login: String, val id: String, val avatar_url: String, val html_url: String )
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+// making LinkedinRepository parcelable to pass it in a bundle
+@Parcelize
+data class LinkedinRepository( val login: String, val id: String, val avatar_url: String, val html_url: String ) :
+    Parcelable
