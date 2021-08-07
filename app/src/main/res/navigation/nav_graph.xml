@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.taccarlo.mvvmstudy.viewmodel.MainFragment"
+        android:name="com.taccarlo.mvvmstudy.view.main.MainFragment"
         android:label="MainFragment" />
 </navigation>

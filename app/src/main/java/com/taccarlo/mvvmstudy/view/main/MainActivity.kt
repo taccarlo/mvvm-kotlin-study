@@ -1,4 +1,4 @@
-package com.taccarlo.mvvmstudy.view
+package com.taccarlo.mvvmstudy.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

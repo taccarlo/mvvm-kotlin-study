@@ -1,4 +1,4 @@
-package com.taccarlo.mvvmstudy.viewmodel
+package com.taccarlo.mvvmstudy.viewmodel.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import com.taccarlo.mvvmstudy.model.MainRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class MainViewModel constructor(private val repository: MainRepository)  : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.taccarlo.mvvmstudy.view
+package com.taccarlo.mvvmstudy.view.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

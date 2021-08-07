@@ -1,4 +1,4 @@
-package com.taccarlo.mvvmstudy.viewmodel
+package com.taccarlo.mvvmstudy.view.main
 
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.taccarlo.mvvmstudy.api.RetrofitService
-import com.taccarlo.mvvmstudy.view.MainAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentMainBinding
 import com.taccarlo.mvvmstudy.model.MainRepository
+import com.taccarlo.mvvmstudy.viewmodel.MyViewModelFactory
+import com.taccarlo.mvvmstudy.viewmodel.main.MainViewModel
 
 class MainFragment : Fragment() {
 
