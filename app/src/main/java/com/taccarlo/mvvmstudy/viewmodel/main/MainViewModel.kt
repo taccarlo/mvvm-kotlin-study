@@ -2,6 +2,7 @@ package com.taccarlo.mvvmstudy.viewmodel.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
 import com.taccarlo.mvvmstudy.model.MainRepository
 import retrofit2.Call
@@ -29,4 +30,5 @@ class MainViewModel constructor(private val repository: MainRepository)  : ViewM
             }
         })
     }
+
 }

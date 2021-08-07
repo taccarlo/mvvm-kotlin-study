@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import com.taccarlo.mvvmstudy.api.RetrofitService
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentMainBinding
 import com.taccarlo.mvvmstudy.model.MainRepository
@@ -20,7 +22,6 @@ class MainFragment : Fragment() {
 
     private val logTag = "MainFragment"
     private lateinit var viewModel: MainViewModel
-
     private val retrofitService = RetrofitService.getInstance()
     private val adapter = MainAdapter()
     private var _binding: FragmentMainBinding ?= null
@@ -52,8 +53,17 @@ class MainFragment : Fragment() {
         viewModel.getAllLinkedinRepos(getString(R.string.search_text), getString(R.string.search_text2))
 
         initSearchInputListener()
+        initButtonListener()
 
         return view
+    }
+
+    private fun initButtonListener() {
+        binding.toExampleKoin.setOnClickListener{
+            findNavController().navigate(
+                R.id.action_mainFragment_to_koinExampleFragment
+            )
+        }
     }
 
     private fun initSearchInputListener(){
