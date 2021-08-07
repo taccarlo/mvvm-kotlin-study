@@ -32,8 +32,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        val view = binding.root
 
         viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
             MainViewModel::class.java)
@@ -55,7 +53,7 @@ class MainFragment : Fragment() {
         initSearchInputListener()
         initButtonListener()
 
-        return view
+        return binding.root
     }
 
     private fun initButtonListener() {
