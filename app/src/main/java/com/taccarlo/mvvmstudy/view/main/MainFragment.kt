@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
             MainViewModel::class.java)
 
-        val adapter = MainAdapter() { position, listItem ->
+        val adapter = MainAdapter { position, listItem ->
             showItem(position, listItem)
         }
         binding.recyclerview.adapter = adapter

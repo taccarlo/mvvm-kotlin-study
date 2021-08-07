@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.R
+import com.taccarlo.mvvmstudy.databinding.FragmentStargazerBinding
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
 
 
@@ -26,7 +24,8 @@ class StargazerFragment : Fragment() {
     //TODO: separate fragment from view model
     private lateinit var itemId: String
     private lateinit var linkedinRepository: LinkedinRepository
-    private lateinit var buttonLink: Button
+    private var _binding: FragmentStargazerBinding ?= null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,25 +37,21 @@ class StargazerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stargazer, container, false)
+    ): View {
+        _binding = FragmentStargazerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val message= "ID: "+linkedinRepository.id
-        val thumbnailImageView = view.findViewById<ImageView>(R.id.profile_pic)
-        view.findViewById<TextView>(R.id.item_title).text = linkedinRepository.login
-        view.findViewById<TextView>(R.id.item_date).text = message
-        buttonLink = view.findViewById(R.id.item_url)
-        buttonLink.text = getString(R.string.link_to_profile)
+        binding.itemTitle.text = linkedinRepository.login
+        binding.itemDate.text = message
+        binding.itemUrl.text = getString(R.string.link_to_profile)
 
-      //  Picasso.get().load(linkedinRepository.avatar_url).into(thumbnailImageView)
+        this.context?.let { Glide.with(it).load(linkedinRepository.avatar_url).into(binding.profilePic) }
 
-        this.context?.let { Glide.with(it).load(linkedinRepository.avatar_url).into(thumbnailImageView) }
-
-        buttonLink.setOnClickListener {
+        binding.itemUrl.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse(linkedinRepository.html_url)
             startActivity(openURL)
