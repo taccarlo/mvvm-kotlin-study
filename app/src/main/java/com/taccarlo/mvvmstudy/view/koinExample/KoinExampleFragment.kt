@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentKoinExampleBinding
 import com.taccarlo.mvvmstudy.model.*
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
 
 class KoinExampleFragment : Fragment() {
@@ -19,7 +18,7 @@ class KoinExampleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentKoinExampleBinding.inflate(inflater, container, false)
 
@@ -34,9 +33,8 @@ class KoinExampleFragment : Fragment() {
         //with koin
         this.context?.let { startKoin(it, listOf(appModule)) }
 
-        val student2: Student by inject()
-
-        binding.textView2.text = getString(R.string.withKoin, comment, like)
+        //val student2: Student by inject()
+        //binding.textView2.text = getString(R.string.withKoin, comment, like)
 
 
         return binding.root
