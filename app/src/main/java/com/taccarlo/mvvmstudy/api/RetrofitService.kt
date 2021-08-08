@@ -9,7 +9,10 @@ import retrofit2.http.Path
 
 interface RetrofitService {
     @GET("repos/{owner}/{name}/stargazers")
-    fun getAllLinkedinRepos(@Path("owner") input1:String, @Path("name") input2:String): Call<List<LinkedinRepository>>
+    fun getAllLinkedinRepos(
+        @Path("owner") input1: String,
+        @Path("name") input2: String
+    ): Call<List<LinkedinRepository>>
 
     /**
      * Retrofit service instance using the retrofit
@@ -25,7 +28,7 @@ interface RetrofitService {
 
         var retrofitService: RetrofitService? = null
 
-        fun getInstance() : RetrofitService {
+        fun getInstance(): RetrofitService {
 
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()

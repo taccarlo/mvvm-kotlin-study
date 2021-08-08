@@ -7,7 +7,8 @@ import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.databinding.AdapterLinkedinRepoBinding
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
 
-class MainAdapter(private var listener: (pos:Int, linRepo: LinkedinRepository) -> Unit) : RecyclerView.Adapter<MainViewHolder>() {
+class MainAdapter(private var listener: (pos: Int, linRepo: LinkedinRepository) -> Unit) :
+    RecyclerView.Adapter<MainViewHolder>() {
 
     var linkedinRepos = mutableListOf<LinkedinRepository>()
 
@@ -25,7 +26,8 @@ class MainAdapter(private var listener: (pos:Int, linRepo: LinkedinRepository) -
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val linkedinRepo = linkedinRepos[position]
         holder.binding.name.text = linkedinRepo.login
-        Glide.with(holder.itemView.context).load(linkedinRepo.avatar_url).into(holder.binding.imageview)
+        Glide.with(holder.itemView.context).load(linkedinRepo.avatar_url)
+            .into(holder.binding.imageview)
         holder.itemView.setOnClickListener {
             listener.invoke(position, linkedinRepo)
         }
@@ -36,6 +38,7 @@ class MainAdapter(private var listener: (pos:Int, linRepo: LinkedinRepository) -
     }
 }
 
-class MainViewHolder(val binding: AdapterLinkedinRepoBinding) : RecyclerView.ViewHolder(binding.root) {
+class MainViewHolder(val binding: AdapterLinkedinRepoBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
 }

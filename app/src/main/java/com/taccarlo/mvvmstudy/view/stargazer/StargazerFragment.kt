@@ -11,7 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentStargazerBinding
-import com.taccarlo.mvvmstudy.model.*
+import com.taccarlo.mvvmstudy.model.Comment
+import com.taccarlo.mvvmstudy.model.LinkedinRepository
+import com.taccarlo.mvvmstudy.model.Vote
+import com.taccarlo.mvvmstudy.model.appModule
 import com.taccarlo.mvvmstudy.viewmodel.stargazer.StargazerViewModel
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
@@ -27,7 +30,7 @@ class StargazerFragment : Fragment() {
 
     private lateinit var itemId: String
     private lateinit var linkedinRepository: LinkedinRepository
-    private var _binding: FragmentStargazerBinding ?= null
+    private var _binding: FragmentStargazerBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: StargazerViewModel
 
@@ -46,7 +49,6 @@ class StargazerFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StargazerViewModel::class.java)
 
 
-
         //with koin
         this.context?.let { startKoin(it, listOf(appModule)) }
         val commentKoin: Comment by inject()
@@ -58,12 +60,14 @@ class StargazerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val message= "ID: "+linkedinRepository.id
+        val message = "ID: " + linkedinRepository.id
         binding.itemTitle.text = linkedinRepository.login
         binding.itemDate.text = message
         binding.itemUrl.text = getString(R.string.link_to_profile)
 
-        this.context?.let { Glide.with(it).load(linkedinRepository.avatar_url).into(binding.profilePic) }
+        this.context?.let {
+            Glide.with(it).load(linkedinRepository.avatar_url).into(binding.profilePic)
+        }
 
         binding.itemUrl.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)

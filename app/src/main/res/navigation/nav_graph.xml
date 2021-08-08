@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.taccarlo.mvvmstudy.view.main.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_koinExampleFragment"
             app:destination="@id/koinExampleFragment" />
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/stargazerFragment"
         android:name="com.taccarlo.mvvmstudy.view.stargazer.StargazerFragment"
-        android:label="StargazerFragment" >
+        android:label="StargazerFragment">
 
         <argument
             android:name="itemId"

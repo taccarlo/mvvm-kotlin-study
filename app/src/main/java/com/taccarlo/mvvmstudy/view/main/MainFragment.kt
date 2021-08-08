@@ -3,16 +3,16 @@ package com.taccarlo.mvvmstudy.view.main
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
-import com.taccarlo.mvvmstudy.api.RetrofitService
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.taccarlo.mvvmstudy.R
+import com.taccarlo.mvvmstudy.api.RetrofitService
 import com.taccarlo.mvvmstudy.databinding.FragmentMainBinding
 import com.taccarlo.mvvmstudy.model.LinkedinRepository
 import com.taccarlo.mvvmstudy.model.MainRepository
@@ -24,7 +24,7 @@ class MainFragment : Fragment() {
     private val logTag = "MainFragment"
     private lateinit var viewModel: MainViewModel
     private val retrofitService = RetrofitService.getInstance()
-    private var _binding: FragmentMainBinding ?= null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,8 +33,10 @@ class MainFragment : Fragment() {
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
-            MainViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, MyViewModelFactory(MainRepository(retrofitService))).get(
+                MainViewModel::class.java
+            )
 
         val adapter = MainAdapter { position, listItem ->
             showItem(position, listItem)
@@ -43,7 +45,7 @@ class MainFragment : Fragment() {
 
         viewModel.linkedinRepoList.observe(viewLifecycleOwner, {
             Log.d(logTag, "onCreate: $it")
-            if(it==null)
+            if (it == null)
                 Log.d(logTag, "No repo with these parameters")
             else
                 adapter.setLinkedinRepoList(it)
@@ -51,7 +53,10 @@ class MainFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner, {
 
         })
-        viewModel.getAllLinkedinRepos(getString(R.string.search_text), getString(R.string.search_text2))
+        viewModel.getAllLinkedinRepos(
+            getString(R.string.search_text),
+            getString(R.string.search_text2)
+        )
 
         initSearchInputListener()
         initButtonListener()
@@ -60,17 +65,17 @@ class MainFragment : Fragment() {
     }
 
     private fun initButtonListener() {
-        binding.toExampleKoin.setOnClickListener{
+        binding.toExampleKoin.setOnClickListener {
             findNavController().navigate(
                 R.id.action_mainFragment_to_koinExampleFragment
             )
         }
     }
 
-    private fun initSearchInputListener(){
+    private fun initSearchInputListener() {
 
-        binding.input.setOnEditorActionListener{ _: View, actionId: Int, _: KeyEvent? ->
-            if(actionId == EditorInfo.IME_ACTION_DONE|| actionId == EditorInfo.IME_ACTION_SEARCH){
+        binding.input.setOnEditorActionListener { _: View, actionId: Int, _: KeyEvent? ->
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val input = binding.input.text.toString()
                 Log.d(logTag, "initSearchInputListener: $input")
                 doSearch()
@@ -80,8 +85,8 @@ class MainFragment : Fragment() {
             }
         }
 
-        binding.input2.setOnEditorActionListener{ _: View, actionId: Int, _: KeyEvent? ->
-            if(actionId == EditorInfo.IME_ACTION_DONE|| actionId == EditorInfo.IME_ACTION_SEARCH){
+        binding.input2.setOnEditorActionListener { _: View, actionId: Int, _: KeyEvent? ->
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val input2 = binding.input2.text.toString()
                 Log.d(logTag, "initSearchInputListener: $input2")
                 doSearch()
