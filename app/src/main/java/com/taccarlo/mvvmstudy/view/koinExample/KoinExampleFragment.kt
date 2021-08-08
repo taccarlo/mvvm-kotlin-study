@@ -44,6 +44,7 @@ class KoinExampleFragment : Fragment() {
         commentKoin.author="Carlo"
         commentKoin.country="ITA"
         commentKoin.message="Hello"
+
         val likeKoin: Vote by inject()
         likeKoin.author="Bob"
         likeKoin.country="ENG"

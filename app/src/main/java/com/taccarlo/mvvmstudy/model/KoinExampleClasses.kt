@@ -1,10 +1,10 @@
 package com.taccarlo.mvvmstudy.model
 
-class AuthorDisplay(){
+class AuthorDisplay{
     fun nameComplete(name:String, country:String) = "User $name from: $country"
 }
 
-class MessageDisplay(){
+class MessageDisplay{
     fun messageComplete(message:String) = "Message $message long ${message.length} characters"
 }
 
@@ -24,7 +24,7 @@ enum class KindOfVote {
     LIKE, DISLIKE
 }
 
-class Vote(val authorDisplay:AuthorDisplay):Feedback {
+class Vote(private val authorDisplay:AuthorDisplay):Feedback {
     lateinit var kind:KindOfVote
     lateinit var author:String
     lateinit var country:String

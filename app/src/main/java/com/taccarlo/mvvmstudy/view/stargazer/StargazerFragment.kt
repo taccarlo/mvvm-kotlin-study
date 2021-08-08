@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentStargazerBinding
-import com.taccarlo.mvvmstudy.model.LinkedinRepository
+import com.taccarlo.mvvmstudy.model.*
 import com.taccarlo.mvvmstudy.viewmodel.stargazer.StargazerViewModel
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
 
 
 /**
@@ -42,6 +44,15 @@ class StargazerFragment : Fragment() {
     ): View {
         _binding = FragmentStargazerBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(StargazerViewModel::class.java)
+
+
+
+        //with koin
+        this.context?.let { startKoin(it, listOf(appModule)) }
+        val commentKoin: Comment by inject()
+        val likeKoin: Vote by inject()
+        binding.textView.text = this.context?.let { viewModel.showKoinList(likeKoin, commentKoin) }
+
         return binding.root
     }
 
