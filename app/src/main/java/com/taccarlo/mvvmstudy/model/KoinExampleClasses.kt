@@ -1,34 +1,40 @@
 package com.taccarlo.mvvmstudy.model
 
-import com.taccarlo.mvvmstudy.model.KindOfVote.*
-
-class Author(private val name:String, private val country:String){
-    fun nameComplete() = "User $name from: $country"
+class AuthorDisplay(){
+    fun nameComplete(name:String, country:String) = "User $name from: $country"
 }
 
-class Message(private val message:String, private val messageLength:Int){
-    fun messageComplete() = "Message $message long $messageLength characters"
+class MessageDisplay(){
+    fun messageComplete(message:String) = "Message $message long ${message.length} characters"
 }
+
+class Comment(val messageDisplay:MessageDisplay, val authorDisplay:AuthorDisplay):Feedback {
+    lateinit var message:String
+    lateinit var author:String
+    lateinit var country:String
+    override fun showContent(): String = messageDisplay.messageComplete(message)+"\n"+authorDisplay.nameComplete(author, country)
+}
+
+interface Feedback {
+    fun showContent():String
+}
+
 
 enum class KindOfVote {
     LIKE, DISLIKE
 }
 
-interface Feedback {
-    val author: Author
-}
+class Vote(val authorDisplay:AuthorDisplay):Feedback {
+    lateinit var kind:KindOfVote
+    lateinit var author:String
+    lateinit var country:String
 
-class Comment(private val message: Message, override val author: Author):Feedback {
-    fun commentContent(): String = message.messageComplete()+"\n"+author.nameComplete()
-}
-
-class Vote(private val kind: KindOfVote, override val author: Author):Feedback {
-    fun voteContent(): String {
+    override fun showContent(): String {
         val kOfVote = when(kind) {
-            LIKE -> "like"
-            DISLIKE -> "dislike"
+            KindOfVote.LIKE -> "like"
+            KindOfVote.DISLIKE -> "dislike"
         }
-        return author.nameComplete()+" put "+kOfVote
+        return authorDisplay.nameComplete(author, country)+" put "+kOfVote
     }
 
 }

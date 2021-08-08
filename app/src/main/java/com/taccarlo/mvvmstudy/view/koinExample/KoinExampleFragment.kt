@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.taccarlo.mvvmstudy.R
 import com.taccarlo.mvvmstudy.databinding.FragmentKoinExampleBinding
 import com.taccarlo.mvvmstudy.model.*
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
 
 class KoinExampleFragment : Fragment() {
@@ -24,17 +25,31 @@ class KoinExampleFragment : Fragment() {
 
 
         //without koin
-        val author = Author("Carlo", "Italy")
-        val message = Message("Hello", "Hello".length)
-        val comment = Comment(message, author).commentContent()
-        val like = Vote(KindOfVote.LIKE, author).voteContent()
-        binding.textView.text = getString(R.string.withoutKoin, comment, like)
+        val author = AuthorDisplay()
+        val message = MessageDisplay()
+        val comment = Comment(message, author)
+            comment.author="Carlo"
+            comment.country="ITA"
+            comment.message="Ciao"
+        val like = Vote(author)
+        like.author="Bob"
+        like.country="ENG"
+        like.kind=KindOfVote.LIKE
+        binding.textView.text = getString(R.string.withoutKoin, comment.showContent(), like.showContent())
 
         //with koin
         this.context?.let { startKoin(it, listOf(appModule)) }
 
-        //val student2: Student by inject()
-        //binding.textView2.text = getString(R.string.withKoin, comment, like)
+        val commentKoin: Comment by inject()
+        commentKoin.author="Carlo"
+        commentKoin.country="ITA"
+        commentKoin.message="Hello"
+        val likeKoin: Vote by inject()
+        likeKoin.author="Bob"
+        likeKoin.country="ENG"
+        likeKoin.kind=KindOfVote.LIKE
+
+        binding.textView2.text = getString(R.string.withKoin, commentKoin.showContent(), likeKoin.showContent())
 
 
         return binding.root
